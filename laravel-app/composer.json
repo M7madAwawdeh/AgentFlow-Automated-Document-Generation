@@ -1,0 +1,137 @@
+{
+    "name": "agentflow/laravel-app",
+    "type": "project",
+    "description": "AgentFlow - Multi-Agent AI System for Automated Documentation and Testing",
+    "keywords": ["laravel", "ai", "documentation", "testing", "security", "performance"],
+    "license": "MIT",
+    "require": {
+        "php": "^8.3",
+        "laravel/framework": "^11.0",
+        "laravel/sanctum": "^4.0",
+        "laravel/tinker": "^2.9",
+        "laravel/horizon": "^6.0",
+        "guzzlehttp/guzzle": "^7.8",
+        "predis/predis": "^2.2",
+        "spatie/laravel-permission": "^6.0",
+        "spatie/laravel-activitylog": "^5.0",
+        "spatie/laravel-backup": "^8.0",
+        "barryvdh/laravel-debugbar": "^3.9",
+        "barryvdh/laravel-ide-helper": "^1.0",
+        "livewire/livewire": "^3.0",
+        "filament/filament": "^3.0",
+        "filament/notifications": "^3.0",
+        "filament/actions": "^3.0",
+        "filament/forms": "^3.0",
+        "filament/tables": "^3.0",
+        "filament/widgets": "^3.0",
+        "filament/support": "^3.0",
+        "filament/panels": "^3.0",
+        "filament/resources": "^3.0",
+        "filament/theme": "^3.0",
+        "filament/upgrade": "^3.0",
+        "filament/plugin": "^3.0",
+        "filament/plugin-blade": "^3.0",
+        "filament/plugin-laravel": "^3.0",
+        "filament/plugin-livewire": "^3.0",
+        "filament/plugin-panels": "^3.0",
+        "filament/plugin-resources": "^3.0",
+        "filament/plugin-tables": "^3.0",
+        "filament/plugin-widgets": "^3.0",
+        "filament/plugin-forms": "^3.0",
+        "filament/plugin-actions": "^3.0",
+        "filament/plugin-notifications": "^3.0",
+        "filament/plugin-support": "^3.0",
+        "filament/plugin-upgrade": "^3.0",
+        "filament/plugin-theme": "^3.0",
+        "filament/plugin-plugin": "^3.0",
+        "filament/plugin-plugin-blade": "^3.0",
+        "filament/plugin-plugin-laravel": "^3.0",
+        "filament/plugin-plugin-livewire": "^3.0",
+        "filament/plugin-plugin-panels": "^3.0",
+        "filament/plugin-plugin-resources": "^3.0",
+        "filament/plugin-plugin-tables": "^3.0",
+        "filament/plugin-plugin-widgets": "^3.0",
+        "filament/plugin-plugin-forms": "^3.0",
+        "filament/plugin-plugin-actions": "^3.0",
+        "filament/plugin-plugin-notifications": "^3.0",
+        "filament/plugin-plugin-support": "^3.0",
+        "filament/plugin-plugin-upgrade": "^3.0",
+        "filament/plugin-plugin-theme": "^3.0",
+        "filament/plugin-plugin-plugin": "^3.0"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.23",
+        "laravel/pint": "^1.13",
+        "laravel/sail": "^1.26",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.1",
+        "phpunit/phpunit": "^10.5",
+        "spatie/laravel-ignition": "^2.4",
+        "pestphp/pest": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "pestphp/pest-plugin-parallel": "^2.0",
+        "pestphp/pest-plugin-coverage": "^2.0",
+        "pestphp/pest-plugin-snapshots": "^2.0",
+        "pestphp/pest-plugin-datasets": "^2.0",
+        "pestphp/pest-plugin-arch": "^2.0",
+        "pestphp/pest-plugin-expectations": "^2.0",
+        "pestphp/pest-plugin-mock": "^2.0",
+        "pestphp/pest-plugin-timout": "^2.0",
+        "pestphp/pest-plugin-watch": "^2.0",
+        "pestphp/pest-plugin-browser": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "pestphp/pest-plugin-parallel": "^2.0",
+        "pestphp/pest-plugin-coverage": "^2.0",
+        "pestphp/pest-plugin-snapshots": "^2.0",
+        "pestphp/pest-plugin-datasets": "^2.0",
+        "pestphp/pest-plugin-arch": "^2.0",
+        "pestphp/pest-plugin-expectations": "^2.0",
+        "pestphp/pest-plugin-mock": "^2.0",
+        "pestphp/pest-plugin-timout": "^2.0",
+        "pestphp/pest-plugin-watch": "^2.0",
+        "pestphp/pest-plugin-browser": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

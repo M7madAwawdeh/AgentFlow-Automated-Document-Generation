@@ -1,0 +1,274 @@
+# AgentFlow Configuration File
+# Copy this file to .agentflow.yaml in your project root and customize as needed
+
+# AI Agent Configuration
+agents:
+  # Documentation Agent - Generates comprehensive code documentation
+  documenter:
+    enabled: true
+    priority: high
+    model: llama-3-70b
+    temperature: 0.1
+    max_tokens: 6000
+    tone: professional
+  
+  # Test Generator Agent - Creates unit and integration tests
+  tester:
+    enabled: true
+    priority: high
+    model: llama-3-70b
+    temperature: 0.1
+    max_tokens: 8000
+    tone: professional
+    test_framework: phpunit  # or 'pest'
+    coverage_target: 80
+  
+  # Security Auditor Agent - Identifies security vulnerabilities
+  security_auditor:
+    enabled: true
+    priority: critical
+    model: llama-3-70b
+    temperature: 0.05
+    max_tokens: 4000
+    tone: strict
+    scan_depth: comprehensive  # 'basic', 'comprehensive', 'paranoid'
+    owasp_top_10: true
+  
+  # Performance Optimizer Agent - Suggests performance improvements
+  performance_optimizer:
+    enabled: true
+    priority: medium
+    model: llama-3-70b
+    temperature: 0.1
+    max_tokens: 5000
+    tone: professional
+    focus_areas:
+      - database_queries
+      - caching
+      - code_efficiency
+      - memory_usage
+
+# LLM Model Configuration
+models:
+  default: llama-3-70b
+  fallback: mixtral
+  available:
+    - llama-3-70b
+    - mixtral
+    - mistral-large
+    - gpt-4
+    - claude-3-sonnet
+  
+  # Model-specific settings
+  llama-3-70b:
+    provider: openrouter
+    cost_per_1k_tokens: 0.0002
+    max_tokens: 8192
+  
+  mixtral:
+    provider: openrouter
+    cost_per_1k_tokens: 0.00014
+    max_tokens: 32768
+  
+  mistral-large:
+    provider: openrouter
+    cost_per_1k_tokens: 0.0007
+    max_tokens: 32768
+
+# Tone Configuration
+tones:
+  professional:
+    description: "Formal, technical language suitable for professional documentation"
+    keywords: ["formal", "technical", "precise", "business"]
+  
+  friendly:
+    description: "Approachable, conversational language while maintaining accuracy"
+    keywords: ["conversational", "approachable", "helpful", "welcoming"]
+  
+  strict:
+    description: "Precise, formal language with strict adherence to standards"
+    keywords: ["strict", "precise", "formal", "standards"]
+  
+  mentor:
+    description: "Educational language that explains concepts and provides learning opportunities"
+    keywords: ["educational", "explanatory", "learning", "guidance"]
+  
+  casual:
+    description: "Relaxed, informal language while maintaining clarity and usefulness"
+    keywords: ["casual", "relaxed", "informal", "clear"]
+
+# Analysis Configuration
+analysis:
+  # File processing
+  max_file_size_mb: 10
+  supported_file_types:
+    - php
+    - js
+    - vue
+    - blade.php
+    - json
+    - yaml
+    - yml
+    - ts
+    - jsx
+    - tsx
+  
+  # Analysis depth
+  scan_depth: comprehensive  # 'basic', 'comprehensive', 'exhaustive'
+  include_comments: true
+  include_dependencies: true
+  analyze_vendor: false
+  
+  # Performance settings
+  max_concurrent_files: 50
+  timeout_seconds: 1800
+  memory_limit_mb: 512
+
+# Output Configuration
+output:
+  # Documentation
+  documentation:
+    format: markdown  # 'markdown', 'html', 'pdf'
+    include_examples: true
+    include_code_snippets: true
+    include_diagrams: false
+  
+  # Tests
+  tests:
+    framework: phpunit  # 'phpunit', 'pest'
+    include_mocks: true
+    include_fixtures: true
+    coverage_report: true
+  
+  # Security
+  security:
+    severity_levels: ['low', 'medium', 'high', 'critical']
+    include_cwe_references: true
+    include_owasp_categories: true
+    include_remediation_steps: true
+  
+  # Performance
+  performance:
+    include_benchmarks: true
+    include_optimization_suggestions: true
+    include_impact_estimates: true
+
+# Integration Settings
+integrations:
+  # Git
+  git:
+    enabled: true
+    clone_timeout: 300
+    max_repo_size_mb: 100
+    supported_providers:
+      - github
+      - gitlab
+      - bitbucket
+      - azure_devops
+  
+  # CI/CD
+  ci_cd:
+    enabled: false
+    providers:
+      - github_actions
+      - gitlab_ci
+      - jenkins
+      - circleci
+  
+  # Issue Tracking
+  issue_tracking:
+    enabled: false
+    providers:
+      - github_issues
+      - gitlab_issues
+      - jira
+      - linear
+
+# Export Configuration
+export:
+  formats:
+    - markdown
+    - html
+    - pdf
+    - json
+  
+  # PDF settings
+  pdf:
+    include_toc: true
+    include_page_numbers: true
+    font_size: 11
+    margin: 1.0
+  
+  # Markdown settings
+  markdown:
+    include_toc: true
+    code_highlighting: true
+    include_metadata: true
+
+# Monitoring and Logging
+monitoring:
+  enabled: true
+  log_level: info  # 'debug', 'info', 'warning', 'error'
+  metrics_collection: true
+  performance_tracking: true
+  
+  # Alerts
+  alerts:
+    failed_analysis: true
+    security_critical: true
+    performance_degradation: true
+
+# Security Settings
+security:
+  # API Security
+  api:
+    rate_limiting: true
+    max_requests_per_minute: 100
+    require_authentication: true
+  
+  # Code Analysis Security
+  code_analysis:
+    scan_for_secrets: true
+    scan_for_vulnerabilities: true
+    quarantine_suspicious_files: false
+  
+  # Data Privacy
+  data_privacy:
+    anonymize_user_data: false
+    encrypt_sensitive_data: true
+    retention_days: 90
+
+# Customization
+customization:
+  # Custom prompts
+  custom_prompts:
+    documenter: ""
+    tester: ""
+    security_auditor: ""
+    performance_optimizer: ""
+  
+  # Custom rules
+  custom_rules:
+    security: []
+    performance: []
+    documentation: []
+  
+  # Branding
+  branding:
+    company_name: ""
+    logo_url: ""
+    primary_color: "#3B82F6"
+    secondary_color: "#8B5CF6"
+
+# Development Settings
+development:
+  debug_mode: false
+  verbose_logging: false
+  mock_llm_responses: false
+  test_mode: false
+  
+  # Local development
+  local:
+    use_local_models: false
+    local_model_endpoint: "http://localhost:8000"
+    bypass_rate_limits: false
