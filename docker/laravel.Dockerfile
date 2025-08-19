@@ -24,22 +24,29 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get install -y nodejs
 
-# Copy existing application directory
-COPY . .
+# Copy composer files first
+COPY composer.json composer.lock* ./
 
 # Install PHP dependencies
-RUN composer install --optimize-autoloader --no-dev
+RUN composer install --optimize-autoloader --no-dev --no-scripts
 
-# Install Node.js dependencies and build assets
-RUN npm install && npm run build
+# Copy application code
+COPY . .
+
+# Skip post-install scripts for now (artisan file doesn't exist yet)
+# RUN composer run-script post-autoload-dump
+
+# Install Node.js dependencies and build assets (skip for now - package.json doesn't exist)
+# RUN npm install && npm run build
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/storage \
     && chmod -R 755 /var/www/html/bootstrap/cache
 
-# Create health check endpoint
-RUN echo '<?php echo "OK"; ?>' > public/health.php
+# Create necessary directories and health check endpoint
+RUN mkdir -p public bootstrap/cache storage/logs storage/framework/cache storage/framework/sessions storage/framework/views \
+    && echo '<?php echo "OK"; ?>' > public/health.php
 
 # Expose port 8000
 EXPOSE 8000

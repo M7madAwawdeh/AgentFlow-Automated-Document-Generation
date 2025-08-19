@@ -10,10 +10,10 @@ services:
       MYSQL_USER: ${DB_USERNAME:-agentflow}
       MYSQL_PASSWORD: ${DB_PASSWORD:-password}
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ../database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     networks:
       - agentflow-network
     healthcheck:
