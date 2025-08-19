@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # MySQL Database
   mysql:
@@ -39,7 +37,7 @@ services:
   python-agents:
     build:
       context: ../python-agents
-      dockerfile: Dockerfile
+      dockerfile: ../docker/python.Dockerfile
     container_name: agentflow-python-agents
     restart: unless-stopped
     environment:
@@ -71,7 +69,7 @@ services:
   laravel-app:
     build:
       context: ../laravel-app
-      dockerfile: Dockerfile
+      dockerfile: ../docker/laravel.Dockerfile
     container_name: agentflow-laravel
     restart: unless-stopped
     environment:

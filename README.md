@@ -205,8 +205,7 @@ GPL-3.0 License - see LICENSE file for details
 ## 🆘 Support
 
 - **Issues**: GitHub Issues
-- **Documentation**: `/docs` directory
-- **Community**: Join our discussions
+- **Contact**: At gmail "m7mad@fintks.com"
 
 ---
 
