@@ -200,7 +200,7 @@ docker-compose exec python-agents python -m pytest
 
 ## 📄 License
 
-MIT License - see LICENSE file for details
+GPL-3.0 License - see LICENSE file for details
 
 ## 🆘 Support
 
