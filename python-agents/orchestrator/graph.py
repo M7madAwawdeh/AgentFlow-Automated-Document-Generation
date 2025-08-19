@@ -17,9 +17,9 @@ from langchain_core.messages import HumanMessage, AIMessage
 from langchain_openai import ChatOpenAI
 
 from agents.documenter import DocumenterAgent
-from agents.tester import TesterAgent
-from agents.security_auditor import SecurityAuditorAgent
-from agents.performance_optimizer import PerformanceOptimizerAgent
+# from agents.tester import TesterAgent
+# from agents.security_auditor import SecurityAuditorAgent
+# from agents.performance_optimizer import PerformanceOptimizerAgent
 from utils.php_parser import PHPParser
 from utils.database import DatabaseManager
 from utils.redis_client import RedisClient
@@ -72,9 +72,9 @@ class AgentOrchestrator:
         # Initialize AI agents
         self.agents = {
             "documenter": DocumenterAgent(),
-            "tester": TesterAgent(),
-            "security_auditor": SecurityAuditorAgent(),
-            "performance_optimizer": PerformanceOptimizerAgent()
+            # "tester": TesterAgent(),
+            # "security_auditor": SecurityAuditorAgent(),
+            # "performance_optimizer": PerformanceOptimizerAgent()
         }
         
         # Build the workflow graph
@@ -95,9 +95,9 @@ class AgentOrchestrator:
         workflow.add_node("parse_code", self._parse_code)
         workflow.add_node("route_to_agents", self._route_to_agents)
         workflow.add_node("run_documenter", self._run_documenter)
-        workflow.add_node("run_tester", self._run_tester)
-        workflow.add_node("run_security_auditor", self._run_security_auditor)
-        workflow.add_node("run_performance_optimizer", self._run_performance_optimizer)
+        # workflow.add_node("run_tester", self._run_tester)
+        # workflow.add_node("run_security_auditor", self._run_security_auditor)
+        # workflow.add_node("run_performance_optimizer", self._run_performance_optimizer)
         workflow.add_node("collect_results", self._collect_results)
         workflow.add_node("store_results", self._store_results)
         workflow.add_node("handle_errors", self._handle_errors)
@@ -108,10 +108,10 @@ class AgentOrchestrator:
         # Main flow
         workflow.add_edge("parse_code", "route_to_agents")
         workflow.add_edge("route_to_agents", "run_documenter")
-        workflow.add_edge("run_documenter", "run_tester")
-        workflow.add_edge("run_tester", "run_security_auditor")
-        workflow.add_edge("run_security_auditor", "run_performance_optimizer")
-        workflow.add_edge("run_performance_optimizer", "collect_results")
+        # workflow.add_edge("run_documenter", "run_tester")
+        # workflow.add_edge("run_tester", "run_security_auditor")
+        # workflow.add_edge("run_security_auditor", "run_performance_optimizer")
+        workflow.add_edge("run_documenter", "collect_results")
         workflow.add_edge("collect_results", "store_results")
         workflow.add_edge("store_results", END)
         
