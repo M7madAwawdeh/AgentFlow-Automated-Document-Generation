@@ -1,0 +1,166 @@
+# AgentFlow Configuration
+# This file configures the behavior of your AI agent team
+
+# Agent Configuration
+agents:
+  documenter:
+    enabled: true
+    priority: high
+    model: llama-3-70b-instruct
+    temperature: 0.3
+    max_tokens: 4000
+    tone: professional
+    focus_areas:
+      - classes
+      - methods
+      - functions
+      - routes
+      - models
+      - migrations
+  
+  tester:
+    enabled: true
+    priority: medium
+    model: llama-3-70b-instruct
+    temperature: 0.2
+    max_tokens: 3000
+    tone: thorough
+    test_frameworks:
+      - phpunit
+      - pest
+    coverage_target: 80
+  
+  security_auditor:
+    enabled: true
+    priority: high
+    model: llama-3-70b-instruct
+    temperature: 0.1
+    max_tokens: 3500
+    tone: strict
+    scan_patterns:
+      - sql_injection
+      - xss
+      - csrf
+      - hardcoded_secrets
+      - insecure_deserialization
+      - file_upload_vulnerabilities
+  
+  performance_optimizer:
+    enabled: true
+    priority: medium
+    model: llama-3-70b-instruct
+    temperature: 0.3
+    max_tokens: 3000
+    tone: analytical
+    focus_areas:
+      - database_queries
+      - caching
+      - memory_usage
+      - execution_time
+      - resource_consumption
+
+# Global Model Configuration
+models:
+  default: llama-3-70b-instruct
+  fallback: gpt-3.5-turbo
+  max_retries: 3
+  timeout: 300
+
+# Analysis Configuration
+analysis:
+  file_types:
+    - php
+    - js
+    - vue
+    - blade.php
+    - json
+    - yaml
+    - yml
+  scan_depth: deep
+  max_file_size: 10485760  # 10MB
+  exclude_patterns:
+    - vendor/
+    - node_modules/
+    - storage/
+    - bootstrap/cache/
+  parallel_processing: true
+  max_concurrent_analyses: 3
+
+# Output Configuration
+output:
+  formats:
+    - markdown
+    - html
+    - json
+    - pdf
+  include_code_snippets: true
+  include_examples: true
+  include_recommendations: true
+  export_options:
+    - download
+    - email
+    - api
+
+# Integration Settings
+integrations:
+  git:
+    enabled: true
+    auto_analyze_commits: false
+    webhook_support: true
+  
+  ci_cd:
+    enabled: false
+    platforms:
+      - github_actions
+      - gitlab_ci
+      - jenkins
+  
+  issue_tracking:
+    enabled: false
+    platforms:
+      - github
+      - gitlab
+      - jira
+
+# Export Configuration
+export:
+  storage: local
+  retention_days: 30
+  max_file_size: 52428800  # 50MB
+  compression: true
+
+# Monitoring and Logging
+monitoring:
+  health_checks: true
+  performance_metrics: true
+  error_tracking: true
+  audit_logging: true
+  alerting: false
+
+# Security Settings
+security:
+  api_rate_limiting: true
+  max_requests_per_minute: 60
+  ip_whitelist: []
+  require_authentication: true
+  session_timeout: 3600
+
+# Customization
+customization:
+  prompts:
+    documenter: "Generate comprehensive documentation for the following PHP code element:"
+    tester: "Create thorough unit tests for the following PHP code:"
+    security_auditor: "Analyze the following code for security vulnerabilities:"
+    performance_optimizer: "Identify performance optimization opportunities in the following code:"
+  
+  rules:
+    documentation_standards: "PSR-12 compatible"
+    test_coverage: "Minimum 80% coverage"
+    security_scanning: "OWASP Top 10 compliance"
+    performance_thresholds: "Response time < 200ms"
+  
+  branding:
+    company_name: "AgentFlow"
+    logo_url: ""
+    primary_color: "#3B82F6"
+    secondary_color: "#1F2937"
